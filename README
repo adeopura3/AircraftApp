@@ -1,5 +1,13 @@
 Aircraft application
 
+How to run?
+- On Mac
+    - Download the repository to your local machine
+    - Open a terminal and go to the folder where you downloaded the repository
+    - Type python -m SimpleHTTPServer 8091 in your command prompt
+    - Open your web browser and go to the address http://127.0.0.1:8091/index.html
+
+
 User Operations
 
 - Boot: Initializes the system
