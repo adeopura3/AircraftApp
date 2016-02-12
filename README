@@ -1,0 +1,15 @@
+Aircraft application
+
+User Operations
+
+- Boot: Initializes the system
+
+- Enqueue: Enqueues the aircraft in the system. The user can specify the type of the aircraft and the size of the aircraft.
+
+- Dequeue: Dequeues the highest priority item from the queue. Passenger aircraft are higher priority than Cargo. Large are higher proprity than small. After priorities, follow FIFO.
+
+Algorithms
+
+- Enqueue: Add in sorted order. Linear O(N)
+
+- Dequeue: Remove the first element from the queue

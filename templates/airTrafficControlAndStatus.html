@@ -1,0 +1,111 @@
+    <!----------start of enqueue---->
+    
+    <div class ="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Enqueue Aircrafts </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <!---- Use 3 columns as below ---->
+                <div class="col-md-3">Specify Aircraft To Enqueue</div>
+                
+                <!---- The radio button group could be a custom directive
+                but I could not get the two way data binding to work in that
+                case ----->
+                <div class="col-md-3"> {{ aircraftSpecifications.aircraftTypeSpecification.title}}
+                    <br/>
+                    <br/>
+                    <label>
+                        <input type="radio" ng-model="aircraftSpecifications.aircraftTypeSpecification.selectedValue" value="Passenger">
+                        Passenger
+                    </label>
+                    <br/>
+                    <label>
+                        <input type="radio" ng-model="aircraftSpecifications.aircraftTypeSpecification.selectedValue" value="Cargo">
+                        Cargo
+                    </label><br/>
+                </div>
+            
+                <div class="col-md-3"> {{ aircraftSpecifications.aircraftSizeSpecification.title}}
+                    <br/>
+                    <br/>
+                    <label>
+                        <input type="radio" ng-model="aircraftSpecifications.aircraftSizeSpecification.selectedValue" value="Large">
+                        Large
+                    </label>
+                    <br/>
+                    <label>
+                        <input type="radio" ng-model="aircraftSpecifications.aircraftSizeSpecification.selectedValue" value="Small">
+                        Small
+                    </label><br/>
+                </div>
+                
+                <div class="col-md-3">
+                    <input type="button" ng-click="enqueueAircraft()" class="btn btn-primary" value="Enqueue" />
+                </div>
+            </div>
+        </div>
+        <!---- For better user experience, I am using the visibility hidden as opposed to
+        display none. This allows the div to be there at all times and there is no change in position
+        when the footer is not being displayed ---->
+        <div class="panel-footer" ng-style="{'visibility': showEnqueueConfirmation?'visible':'hidden'}">
+            <!----TODO: Animation ---->
+            <label> Enqueued aircraft of type {{ enqueuedAircraft.type }} and size {{ enqueuedAircraft.size }}.
+            Aircraft was added at position {{ enqueueData.addedAtPosition }} out of a total of {{ enqueueData.totalSize }} aircrafts</label>
+        </div>
+    </div>
+    
+    <br/>
+    <br/>
+    <!----------start of dequeue---->
+    
+    <div class ="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Dequeue Aircrafts </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">Dequeue aircraft with highest priority</div>
+                
+                <div class="col-md-6">
+                    <input type="button" ng-click="dequeueAircraftWithHighestPriority()" class="btn btn-primary" value="Dequeue Aircraft" ng-disabled="aircraftQueue.length === 0"/>
+                </div>              
+            </div>
+        </div>
+        <div class="panel-footer" ng-style="{'visibility': showDequeueConfirmation?'visible':'hidden'}">
+            <!----TODO: Animation ---->
+            <label> Dequeued aircraft of type {{ dequeuedAircraft.type }} and size {{ dequeuedAircraft.size }}. This was the highest priority aircraft in the system </label>
+        </div>
+    </div>
+    
+    <!----------end of dequeue---->
+    
+    <br/>
+    <br/>
+    
+    <!-----start of system details ----->
+    <div class ="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Aircrafts in System (In order of priority)</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Aircraft Type</th>
+                    <th>Aircraft Size</th>
+                    <th>Added on</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <!---- Use a custom directive in order to show the aircraft details
+                    If there was a decision to change the row display, only this directive would
+                    have to change ---->
+                    <tr aircraft-details aircraft-object="aircraft" ng-repeat="aircraft in aircraftQueue"></tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    
+    <!-----end of system details ----->
