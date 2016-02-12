@@ -30,9 +30,23 @@ High level Code organization
 - Air Traffic Contorl and Status Page
     - Route in routes.js
     - Uses the template airTrafficControlAndStatus.html
+        - Enqueue Panel
+        - Dequeue Panel
+        - Status Panel (Aircrafts in queue)
     - Controller in controller.js
-        - If the page was accessed without the system boot, redirects to the system boot page
-        - 
+        - User built in Angular timeout service
+        - Uses custom systemBootService and queueManagementService
+        - If the page was accessed without the system being booted, redirects to the system boot page
+        - Enqueue
+            - Two way binding for the aircraft size and aircraft type that are to be enqueued
+            - Handles enqueue click and passes on the work to the queueManagementService
+            - Shows footer in the panel for 10 seconds once the enqueue is successful (Two way binding)
+        - Dequeue
+            - If queue is empty, disable the dequeue button via two way binding
+            - Handles dequeue click and passes on the work to the queueManagementService to dequeue the highest priority item
+            - Shows footer in the panel for 10 seconds once the dequeue is successful (Two way binding)
+        
+        
     - Route to home page, where the user is required to boot the system
     - Route to the aircraftControlSystemAndStatus page where the user can enqueue, dequeue, and view the aircrafts in the system
     - If the user were to directly try to access aircraftControlSystemAndStatus page and the system were not booted, they will be redirected to the home page
