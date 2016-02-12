@@ -13,3 +13,13 @@ Algorithms
 - Enqueue: Add in sorted order. Linear O(N)
 
 - Dequeue: Remove the first element from the queue
+
+High level Code organization
+
+- Routes (routes.js)
+    - Route to home page, where the user is required to boot the system
+    - Route to the aircraftControlSystemAndStatus page where the user can enqueue, dequeue, and view the aircrafts in the system
+    - If the user were to directly try to access aircraftControlSystemAndStatus page and the system were not booted, they will be redirected to the home page
+    
+- Controllers (controllers.js)
+    - 
