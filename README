@@ -10,9 +10,9 @@ User Operations
 
 Algorithms
 
-- Enqueue: Add in sorted order. Linear O(N)
+- Enqueue: Add in sorted order. Complexity O(N)
 
-- Dequeue: Remove the first element from the queue
+- Dequeue: Remove the first element from the queue. Complexity O(1)
 
 High level Code organization
 
@@ -26,13 +26,13 @@ High level Code organization
         - Handles the click from the boot system button and redirects to the airTrafficControlAndStatus route
         
 
-
 - Air Traffic Contorl and Status Page
     - Route in routes.js
     - Uses the template airTrafficControlAndStatus.html
         - Enqueue Panel
         - Dequeue Panel
         - Status Panel (Aircrafts in queue)
+            - Uses custom directive aircraftDetails to show the details of each aircraft. This allows us to make changes to the way the aircraft details might be presented to the user without changing any other code
     - Controller in controller.js
         - User built in Angular timeout service
         - Uses custom systemBootService and queueManagementService
@@ -42,7 +42,21 @@ High level Code organization
             - Handles enqueue click and passes on the work to the queueManagementService
             - Shows footer in the panel for 10 seconds once the enqueue is successful (Two way binding)
         - Dequeue
-            - If queue is empty, disable the dequeue button via two way binding
+            - If queue is empty, disable the dequeue button (two way binding)
             - Handles dequeue click and passes on the work to the queueManagementService to dequeue the highest priority item
             - Shows footer in the panel for 10 seconds once the dequeue is successful (Two way binding)
     
+Custom Services
+- systemBootService
+    - Uses Angular location, q, and timeout service
+    - Provides the ability to boot up the system (asynchronous call)
+    
+- queueManagementService
+    - Uses Angular in build service q, timeout,
+    - Uses custom systemBootService, aircraftComparisonService
+    - Provides the ability to enqueue items
+        - enqueue the aircraft at the correctly sorted order (for dequeue)
+        - Insertion is O(N)
+    - Provides the ability to dequeue the highest priority item in the queue
+        - Remove the item at the head of the queue
+        - Dequeue is O(1)
