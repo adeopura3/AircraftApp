@@ -24,8 +24,8 @@ High level Code organization
         - Makes use of the Angular location service
         - Makes use of a custom systemBootService
         - Handles the click from the boot system button and redirects to the airTrafficControlAndStatus route
-   
         
+
 
 - Air Traffic Contorl and Status Page
     - Route in routes.js
@@ -45,16 +45,4 @@ High level Code organization
             - If queue is empty, disable the dequeue button via two way binding
             - Handles dequeue click and passes on the work to the queueManagementService to dequeue the highest priority item
             - Shows footer in the panel for 10 seconds once the dequeue is successful (Two way binding)
-        
-        
-    - Route to home page, where the user is required to boot the system
-    - Route to the aircraftControlSystemAndStatus page where the user can enqueue, dequeue, and view the aircrafts in the system
-    - If the user were to directly try to access aircraftControlSystemAndStatus page and the system were not booted, they will be redirected to the home page
     
-- Controllers (controllers.js)
-    - There is a controller for the home page that handles the system boot
-        - 
-    - There is a controller for the aircraftControlSystemAndStatus page that handles
-        - enqueue
-        - dequeue
-        - 
